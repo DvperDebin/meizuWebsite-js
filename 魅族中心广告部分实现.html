@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魅族中心广告部分实现</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		p,h1, h2, h3, h4, h5, h6{
+		margin: 0;
+    	padding: 0;
+    	font-weight: 400;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		.adv-container{
+			background-color: #F5F5F5;
+			height: 800px;
+			
+		}
+		.inner-container{
+			width: 1240px;
+			margin: 0 auto;
+		}
+		/* 第一行内容 */
+		h2, a{
+			float: left;
+		}
+		.row1-h2-span{
+			display: inline-block;
+			float: right;
+			margin-top:12px;
+			font-size: 14px;
+			cursor: pointer;
+		}
+		.container-row1{
+			width: 100%;
+			overflow: hidden;
+		}
+		.h2-content{
+			margin-top:5px;
+		}
+		.a-content{
+			display: inline-block;
+			margin-top:12px;
+			color: #00C3F5;
+			margin-left: 30px;
+			line-height: 24px;
+			padding-bottom: 3px;
+			font-size: 14px;
+		}
+		.span-a-content{
+			text-decoration: none;
+			color: black;
+		}
+		.span-a-content:hover{
+			color: #00C3F5;
+		}
+		.phone-adv-container{
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 20px;
+		}
+		/* 第二行 第一区 */
+		.box,.box1{
+			width: 20%;
+			height: 338px;
+		}
+		.img1{
+			width: 100%;
+			height: 100%;
+		}
+		/*第二区*/
+		.box2{
+			padding: 0 5px;
+			box-sizing: border-box;
+		}
+
+		.box2-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box2-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img2{
+			margin: 36px 22px 0;
+		}
+		.img2-h4,.img2-p{
+			font-size: 14px;
+		}
+		.img2-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img2-h6{
+			color: #D4D3D4;
+		}
+		.img2-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img2-p-icon::before{
+			content:"\FFE5";
+		}
+		.new-product{
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background-color: #00C3F5;
+			position: absolute;
+			top: 16px;
+			right: 16px;
+			font-size: 12px;
+			color: white;
+			vertical-align: middle;
+			text-align: center;
+			line-height: 40px;
+		}
+		/* 第三区*/
+		.box3{
+			padding: 0 5px 0 0;
+			box-sizing: border-box;
+		}
+		.box3-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box3-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img3{
+			margin: 36px 22px 0;
+		}
+		.img3-h4,.img3-p{
+			font-size: 14px;
+		}
+		.img3-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img3-h6{
+			color: #D4D3D4;
+		}
+		.img3-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img3-p-icon::before{
+			content:"\FFE5";
+		}
+		.img3-p-icon-qi{
+			font-size: 12px;
+		}
+		/* 第四区*/
+		.box4{
+			padding: 0 5px 0 0;
+			box-sizing: border-box;
+		}
+		.box4-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box4-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img4{
+			margin: 36px 22px 0;
+		}
+		.img4-h4,.img4-p{
+			font-size: 14px;
+		}
+		.img4-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img4-h6{
+			color: #D4D3D4;
+		}
+		.img4-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img4-p-icon::before{
+			content:"\FFE5";
+		}
+		.img4-p-icon-qi{
+			font-size: 12px;
+		}
+		.img4-p-icon-del{
+			font-size: 12px;
+			color: #B2B2B2;
+		}
+		.img4-p-icon-del-icon::before{
+			content: "\FFE5";
+		}
+		/* 第五区 */
+		.box5{
+			box-sizing: border-box;
+		}
+		.box5-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box5-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img5{
+			margin: 36px 22px 0;
+		}
+		.img5-h4,.img5-p{
+			font-size: 14px;
+		}
+		.img5-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img5-h6{
+			color: #D4D3D4;
+		}
+		.img5-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img5-p-icon::before{
+			content:"\FFE5";
+		}
+		.img5-p-icon-qi{
+			font-size: 12px;
+		}
+		.img5-p-icon-del{
+			font-size: 12px;
+			color: #B2B2B2;
+		}
+		.img5-p-icon-del-icon::before{
+			content: "\FFE5";
+		}
+		
+		/*第六区*/
+		.box6{
+		
+			box-sizing: border-box;
+		}
+		.box6-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box6-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img6{
+			margin: 36px 22px 0;
+		}
+		.img6-h4,.img6-p{
+			font-size: 14px;
+		}
+		.img6-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img6-h6{
+			color: #D4D3D4;
+		}
+		.img6-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img6-p-icon::before{
+			content:"\FFE5";
+		}
+		.img6-p-icon-qi{
+			font-size: 12px;
+		}
+		.img6-p-icon-del{
+			font-size: 12px;
+			color: #B2B2B2;
+		}
+		.img6-p-icon-del-icon::before{
+			content: "\FFE5";
+
+		}
+		.box6{
+			padding-top: 5px;
+			box-sizing: border-box;
+		}
+		/* 第七区 */
+		.box7{
+			padding: 5px 5px 0 5px;
+			box-sizing: border-box;
+		}
+		.box7-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box7-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img7{
+			margin: 36px 22px 0;
+		}
+		.img7-h4,.img7-p{
+			font-size: 14px;
+		}
+		.img7-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img7-h6{
+			color: #D4D3D4;
+		}
+		.img7-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img7-p-icon::before{
+			content:"\FFE5";
+		}
+		/* 第八区 */
+		.box8{
+			padding: 5px 5px 0 0;
+			box-sizing: border-box;
+		}
+		.box8-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box8-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img8{
+			margin: 36px 22px 0;
+		}
+		.img8-h4,.img8-p{
+			font-size: 14px;
+		}
+		.img8-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img8-h6{
+			color: #D4D3D4;
+		}
+		.img8-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img8-p-icon::before{
+			content:"\FFE5";
+		}
+		.img8-p-icon-qi{
+			font-size: 12px;
+		}
+		.img8-p-icon-del{
+			font-size: 12px;
+			color: #B2B2B2;
+		}
+		.img8-p-icon-del-icon::before{
+			content: "\FFE5";
+		}
+		/*第九区*/
+		.box9{
+			padding: 5px 5px 0 0;
+			box-sizing: border-box;
+		}
+		.box9-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box9-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img9{
+			margin: 36px 22px 0;
+		}
+		.img9-h4,.img9-p{
+			font-size: 14px;
+		}
+		.img9-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img9-h6{
+			color: #D4D3D4;
+		}
+		.img9-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img9-p-icon::before{
+			content:"\FFE5";
+		}
+		.img9-p-icon-qi{
+			font-size: 12px;
+		}
+		/* 第10区 */
+		.box10{
+			padding: 5px 0 0 0;
+			box-sizing: border-box;
+		}
+		.box10-inner{
+			width: 100%;
+			height: 338px;
+			background-color: white;
+			text-align: center;
+			position: relative;
+		}
+		.box10-inner:hover{
+			box-shadow: 0px 10px 20px #333333;
+		}
+		.img10{
+			margin: 36px 22px 0;
+		}
+		.img10-h4,.img10-p{
+			font-size: 14px;
+		}
+		.img10-h4{
+			margin-top:40px;
+			color: #555757;
+		}
+		.img10-h6{
+			color: #D4D3D4;
+		}
+		.img10-p-icon{
+			padding-right: 2px;
+   		 	margin: 0 4px;
+    		font-size: 14px;
+    		color: #E02B41;
+		}
+		.img10-p-icon::before{
+			content:"\FFE5";
+		}
+		.box6, .box7, .box8, .box9, .box10{
+			margin-bottom: 5px;
+		}
+
+		.box2:hover,.box3:hover,.box4:hover,.box5:hover,.box6:hover,.box7:hover,.box8:hover,.box9:hover,.box10:hover{
+			cursor: pointer;
+		}
+		
+		
+		/* 屏幕媒体查询 */
+		@media screen and (max-width: 800px){
+			.body{
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				height: 1900px;
+			}
+			.inner-container{
+				width: 90%;
+				margin: 0 auto;
+			}
+			.container-row1{
+				width: 100%;
+			}
+			.row1-h2-span{
+				display: none;
+			}
+
+			.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9,.box10{
+				width: 45%;
+				padding: 0;
+				margin: 0;
+			}
+			.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8{
+				margin-bottom: 5px;
+			}
+			.box1, .box2, .box5, .box7, .box9{
+				margin-right: 5px;
+			}
+			.box1{
+				order: -1;
+			}
+			.box4{
+				order: 0;
+			}
+			.box2{
+				order: 1;
+			}
+			.box3{
+				order:2;
+			}
+			.box5{
+				order:3;
+			}
+			.box6{
+				order:4;
+			}
+			.box7{
+				order:5;
+			}
+			.box8{
+				order:6;
+			}
+			.box9{
+				order:7;
+			}
+			.box10{
+				order:8;
+			}
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="inner-container">
+			<div class="container-row1">	
+				<h2 class="h2-content">手机</h2>
+				<a href="#" class="a-content">热销机型</a>	
+					<span class="row1-h2-span"><a href="#" class="span-a-content">更多></a></span>
+			</div>
+			<div class="phone-adv-container">
+				<div class="box box1">
+					<img src="imgs/Cgbj0FnHsoKAT8InAACk3cNVKV0729.jpg" class="img1">
+				</div>
+				<div class="box box2">
+					<div class="box2-inner">
+						<img src="imgs/hanghaiwang.png" class="img2">
+						<h4 class="img2-h4">魅蓝 Note6 航海王限定套装</h4>
+						<h6 class="img2-h6">购机享6期免息</h6>
+						<p class="img2-p">
+							<span class="img2-p-icon">1699</span>
+						</p>
+						<div class="new-product">
+							新品
+						</div>
+					</div>
+				</div>
+				<div class="box box3">
+					<div class="box3-inner">
+						<img src="imgs/meilan6.jpg" class="img3">
+						<h4 class="img3-h4">魅蓝 6</h4>
+						<h6 class="img3-h6">八核+AI智能加速</h6>
+						<p class="img3-p">
+							<span class="img3-p-icon">699 <span class="img3-p-icon-qi">起</span></span>
+						</p>
+						<div class="new-product">
+							新品
+						</div>
+					</div>
+				</div>
+				<div class="box box4">
+					<div class="box4-inner">
+						<img src="imgs/pro7plus.png" class="img4">
+						<h4 class="img4-h4">魅族 PRO 7 PLUS</h4>
+						<h6 class="img4-h6">直降281元 享12期免息</h6>
+						<p class="img4-p">
+							<span class="img4-p-icon">3299 <span class="img4-p-icon-qi">起</span></span>
+							<span class="img4-p-icon-del">
+								<del class="img4-p-icon-del-icon">3580</del></span>
+						</p>
+					</div>
+				</div>
+				<div class="box box5">
+					<div class="box5-inner">
+						<img src="imgs/meilanX.jpg" class="img5">
+						<h4 class="img5-h4">魅蓝 X</h4>
+						<h6 class="img5-h6">直降300元 顺丰包邮</h6>
+						<p class="img5-p">
+							<span class="img5-p-icon">1199 <span class="img5-p-icon-qi">起</span></span>
+							<span class="img5-p-icon-del">
+								<del class="img5-p-icon-del-icon">1499</del></span>
+						</p>
+					</div>
+				</div>
+				<div class="box box6">
+					<div class="box6-inner">
+						<img src="imgs/note5.jpg" class="img6">
+						<h4 class="img6-h4">魅蓝 Note5</h4>
+						<h6 class="img6-h6">限时特惠50元</h6>
+						<p class="img6-p">
+							<span class="img6-p-icon">849 <span class="img6-p-icon-qi">起</span></span>
+							<span class="img6-p-icon-del">
+								<del class="img6-p-icon-del-icon">899</del></span>
+						</p>
+					</div>
+				</div>
+				<div class="box box7">
+					<div class="box7-inner">
+						<img src="imgs/meilanE.png" class="img7">
+						<h4 class="img7-h4">魅蓝 E</h4>
+						<h6 class="img7-h6">视觉盛宴 尽在高清大屏</h6>
+						<p class="img7-p">
+							<span class="img7-p-icon">999
+						</p>
+					</div>
+				</div>
+				<div class="box box8">
+					<div class="box8-inner">
+						<img src="imgs/meilanE2.jpg" class="img8">
+						<h4 class="img8-h4">魅蓝 E2</h4>
+						<h6 class="img8-h6">限时特惠100元</h6>
+						<p class="img8-p">
+							<span class="img8-p-icon">1199 <span class="img8-p-icon-qi">起</span></span>
+							<span class="img8-p-icon-del">
+								<del class="img8-p-icon-del-icon">1299</del></span>
+						</p>
+					</div>
+				</div>
+				<div class="box box9">
+					<div class="box9-inner">
+						<img src="imgs/meilan5s.png" class="img9">
+						<h4 class="img9-h4">魅蓝 5s</h4>
+						<h6 class="img9-h6">32G版领卷减50元</h6>
+						<p class="img9-p">
+							<span class="img9-p-icon">799 <span class="img9-p-icon-qi">起</span></span>	
+						</p>
+					</div>
+				</div>
+				<div class="box box10">
+					<div class="box10-inner">
+						<img src="imgs/meilanpro6s.png" class="img10">
+						<h4 class="img10-h4">魅蓝 PRO 6s</h4>
+						<h6 class="img10-h6">购机享3期免息</h6>
+						<p class="img10-p">
+							<span class="img10-p-icon">2299 
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

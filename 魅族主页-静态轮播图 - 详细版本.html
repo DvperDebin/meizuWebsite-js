@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魅族-图片轮播</title>
+	<meta charset="utf-8">
+	<script src="AutoSliderPic.js"></script>
+	<style type="text/css">
+		body {
+            margin: 0;
+            font-family: "PingFang SC", "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", Arial, Helvetica, sans-serif, "\5B8B\4F53";
+            font-size: 14px;
+            min-width: 1240px;
+            min-height: 100%;
+
+            height: 1000px;
+        }
+        i {
+            font-style: normal;
+        }
+        /* 引入网络字体 - 使用字体系列时，脱离当前操作系统所限制的字体样式 */
+        @font-face {
+            /* 定义网络字体的字体系列名称 */
+            font-family: layout-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-7fe3aaa151.eot);
+            src: url(font/iconfont-7fe3aaa151.eot#iefix) format("embedded-opentype"), url(font/iconfont-d91c6d8c6e.woff) format("woff"), url(font/iconfont-43e1f7b40d.ttf) format("truetype")
+        }
+		@font-face {
+			font-family: home-font;
+			src: url(font/iconfont-e7aa55706f.eot);
+			src: url(font/iconfont-e7aa55706f.eot#iefix) format("embedded-opentype"), url(font/iconfont-a4acbf4ccb.woff) format("woff"), url(font/iconfont-e10a2a74bc.ttf) format("truetype"), url(font/iconfont-85fb670cf6.svg#iconfont) format("svg")
+		}
+        /* 最外层视窗 */
+		.container-viewport{
+			width: 100%;
+			height: 480px;
+			overflow: hidden;
+			position: relative;
+		}
+		/* 图片存储器 */
+		.picstore{
+			/*
+				1920 * 7，这个1920并不是图片的大小！
+				而是每张图片的视窗大小！
+			*/
+			width: 13440px;
+			height: 480px;
+			/* 因为包含图片的视窗浮动了，所以要解决高度塌陷问题*/
+			overflow: hidden;
+			/* 在最外视窗上移动图片储存器来达到对图片的轮播效果*/
+			position: absolute;
+			left: 0px;
+		}
+
+		/* 每张图片的设置 */
+		.piccast-pic{
+			/* 高宽都是原图大小*/
+			width: 1920px;
+			height: 480px;
+			/* 需要让图片靠左，同时水平居中，所以进行定位平移*/
+			position: relative;
+			/* 相对于自身向右移动父级元素a的50%宽度的距离*/
+			left: 50%;
+			/*
+				因为本身a元素居中，又向右移动了50%的a元素的宽度
+				所以现在图片最左边应该是在屏幕的最中间位置，也就是中轴线上
+				所以我们再向左移动图片的50%，回到屏幕最左边
+			*/
+			transform: translateX(-50%);
+		}
+		/* a元素设置*/
+		.pic-link{
+			/* 魅族官网给的定值 */
+			width: 1240px;
+			height: 480px;
+			/* 设置高宽有效 */
+			display: block;
+			/*
+				设置a元素区域居中，然后左边显示出了空白区域，
+				a元素居中了，但是图片因为a元素居中，左边产生了空白区域
+				导致图片没有居中
+			*/
+			margin: 0 auto;
+		}
+		/*
+			一张图片的视窗大小，即为用户设备视窗大小。
+		*/
+		.pic-viewport{
+			/* 所以宽为100%，即为视窗宽度*/
+			/*width: 100%; 因为外层容器的设置，这里不能再是100%的宽度了*/
+			width: 1920px;
+			/* 定高 */
+			height: 480px;
+			/* 消除左右滚动条*/
+			overflow: hidden;
+			/*
+				设置浮动，因为它包含的a元素和图片元素都是块级元素了
+				所以设置这个浮动和设置我们原来用的图片浮动效果是一样的
+			*/
+			float: left;
+		}
+		/*
+			菜单部分,思路就是我们在无序列表外层再加一个容器
+			把这个容器就像之前的轮播图的a元素一样居中
+			最后让这个容器中的无序列表紧贴左侧
+		 */
+		.menu-ul{
+			/* 大小 */
+			width: 244px;
+			height: 480px;
+			background-color: rgba(248,247,247,0.8);
+
+			position: absolute;
+			left: 50%;
+			top: 0;
+			/* reset ul属性*/
+
+			list-style: none;
+			/*margin-left: -620px;*/
+			padding: 0;
+			padding: 12px 0 0 0;
+			margin-left: -620px;
+			margin-top: -12px;
+		}
+	/*	.container-menu{
+			!*margin: 0 auto;*!
+			width: 244px;
+			!* 绝对定位后，margin无效*!
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(-50%);
+
+		}*/
+		.menu-li{
+			height: 57px;
+			line-height: 57px;
+			background-color: transparent;
+		}
+		.menu-li:hover{
+			background-color: white;
+		}
+		.menu-li-link{
+			padding: 0 30px;
+			display: block;
+			color: #333;
+			height: 100%;
+			text-decoration: none;
+		}
+		/*这是轮播效果部分JS控制*/
+		.slick-prev {
+			margin-left: -376px;
+		}
+		.slick-arrow {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 30px;
+			height: 60px;
+			margin-top: -30px;
+			outline: 0;
+			border: none;
+			cursor: pointer;
+			color: #EFEFEF;
+			background-color: transparent;
+			transition: all .5s;
+			text-align: center;
+			line-height: 60px;
+		}
+		.slick-arrow:hover {
+			background-color: rgba(0,0,0,.5);
+		}
+		.font-prev, .font-next {
+			font-family: home-font!important;
+			font-size: 16px;
+		}
+
+		.slick-next {
+			margin-left: 590px;
+		}
+
+		.slick-dots {
+			position: absolute;
+			width: 1240px;
+			left: 50%;
+			bottom: 10px;
+			text-align: center;
+			margin-left: -620px;
+		}
+		.home-slider-dot {
+			background: 0 0;
+			color: transparent;
+			border: 1px solid #BDBDBD;
+			border-radius: 100%;
+			width: 8px;
+			height: 8px;
+			outline: 0;
+			font-size: 0;
+			cursor: pointer;
+		}
+		.slick-dots li {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+		.font-prev::before {
+			content: '\E65B';
+		}
+		.font-next::before {
+			content: '\E659';
+		}
+		.slick-active .home-slider-dot {
+			background: #00c3f5;
+			border-color: #00c3f5;
+		}
+		/*这是二级菜单部分JS控制*/
+		.home-menu-child {
+			position: absolute;
+			height: 492px;
+			left: 244px;
+			top: 0;
+			background-color: #fff;
+			white-space: nowrap;
+			font-size: 0;
+			display: none;
+		}
+		.home-menu-child-list {
+			display: inline-block;
+			vertical-align: top;
+			margin: 15px 28px 15px 25px;
+			width: 320px;
+			height: 450px;
+		}
+		.home-menu-child-item {
+			float: left;
+			font-size: 12px;
+			height: 40px;
+			width: 150px;
+			line-height: 40px;
+			color: #333;
+			margin-bottom: 16px;
+			transition: all .5s;
+			overflow: hidden;
+		}
+		.home-menu-child-item:hover {
+			color: #00c3f5;
+		}
+		.home-menu-child-item.title {
+			position: relative;
+			width: 100%;
+			font-size: 14px;
+			border-bottom: 1px solid #F5F5F5;
+			margin-top: 4px;
+		}
+		.home-menu-child-item.title::after {
+			position: absolute;
+			height: 100%;
+			right: 10px;
+			font-family: home-font;
+			content: '\E659';
+			font-size: 12px;
+			color: #D5D5D5;
+		}
+		.home-menu-child-img {
+			float: left;
+			width: 40px;
+			height: 40px;
+		}
+		.home-menu-child-text {
+			float: left;
+			margin-left: 6px;
+			width: 100px;
+			overflow: hidden;
+			white-space: nowrap;
+			word-break: keep-all;
+			text-overflow: ellipsis;
+		}
+	</style>
+</head>
+<body>
+	<div class="body-container">
+		<!-- 图片轮播视窗 -->
+		<div class="container-viewport">
+			<!-- 图片的储存器 -->
+			<div class="picstore" id="imgStore">
+				<!-- 每一张图给予一个视窗，这样就会根据大小裁取图片 -->
+				<div class="pic-viewport">
+					<!-- a元素因为超链接效果同时包含图片 -->
+					<a href="#" class="pic-link"><img src="img/1.jpg" class="piccast-pic"></a>
+				</div>
+				<!-- 第二张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/2.jpg" class="piccast-pic"></a>
+				</div>
+				<!-- 第三张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/3.png" class="piccast-pic"></a>
+				</div>
+				<!-- 第四张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/4.jpg" class="piccast-pic"></a>
+				</div>
+				<!-- 第五张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/5.jpg" class="piccast-pic"></a>
+				</div>
+				<!-- 第六张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/6.png" class="piccast-pic"></a>
+				</div>
+				<!-- 第七张图  -->
+				<div class="pic-viewport">
+					<a href="#" class="pic-link"><img src="img/7.jpg" class="piccast-pic"></a>
+				</div>
+		 	</div>
+			<!-- 向左的按钮 -->
+			<div id="slick_prev" class="slick-arrow slick-prev">
+				<i class="font font-prev"></i>
+			</div>
+			<!-- 向右的按钮 -->
+			<div id="slick_next" class="slick-arrow slick-next">
+				<i class="font font-next"></i>
+			</div>
+			<!-- 图片的导航器 -->
+			<ul id="slick_dots" class="slick-dots">
+				<li class="slick-active"><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+				<li><div class="home-slider-dot"></div></li>
+			</ul>
+		</div>
+		<!-- 这是左侧覆盖轮播图一部分的主体菜单 -->
+		<!--<div class="container-menu">-->
+			<ul class="menu-ul" id="menu-ul">
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">手机</a>
+					<!--二级菜单功能-->
+					<div class="home-menu-child" id="home-menu-child">
+						<div class="home-menu-child-list">
+							<a href="#" class="home-menu-child-item title">魅族手机</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0Fl4NtOAU4aRAAvVzqN22Ug687.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">PRO 7</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0Vl4OdOAGsDfAAuYs_pyDV0706.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">PRO 7 Plus</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cix_s1g-ZXuAYp1LABY2I5awJck337.png80x80.jpg" class="home-menu-child-img">
+								<div class="home-menu-child-text">PRO 6 Plus</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0VjsfjmAJR0zAAqULbIBw-M571_180x180.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">PRO 6s</div>
+							</a>
+							<a href="#" class="home-menu-child-item title">魅蓝手机</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0VnCGzWAWqh8AAwk2MA0gtk390.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 6</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0FmdIJmAeVGmAAxAuuJkLGk921.png@480x480.jpg" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 Note6</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0VkAUNmAeTU2AAklK6hJr4k492.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 E2</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0FjsfnCAcnAJAAndI9Fz2pU498_180x180.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 5s</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cix_s1hGE9KAJ1E-AAv78Kz1Hok651.png@240x240.jpg" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 Note5</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0VjsfqyAVtTeAAtHG2nRyAc269_180x180.png" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 E</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/CnQOjVg-ZwCAEthoAAj4ScedJ9k163.png@240x240.jpg" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 X</div>
+							</a>
+							<a href="#" class="home-menu-child-item">
+								<img src="img/Cgbj0VlSHwiAe5UBAAZIlvIJX5w205.png@240x240.jpg" class="home-menu-child-img">
+								<div class="home-menu-child-text">魅蓝 A5</div>
+							</a>
+						</div>
+					</div>
+				</li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">智能设备</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">智能穿戴</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">游戏设备</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">数码影音</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">手机配件/移动电源</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">移动存储/办公设备</a></li>
+				<li class="menu-li">
+					<a href="#" class="menu-li-link">生活周边</a></li>
+			</ul>
+		<!--</div>-->
+	</div>
+</body>
+</html>

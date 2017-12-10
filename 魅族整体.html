@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>魅族-商城官网</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 页签中的小图标 -->
+    <link href="img/icon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="img/icon.ico" rel="icon" type="image/x-icon">
+    <script src=></script>
+    <style type="text/css">
+        /* 来自于源网页的样式内容 */
+        body {
+            margin: 0;
+            font-family: "PingFang SC", "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", Arial, Helvetica, sans-serif, "\5B8B\4F53";
+            font-size: 14px;
+            min-width: 1240px;
+            min-height: 100%;
+        }
+        @font-face {
+            /* 定义网络字体的字体系列名称 */
+            font-family: layout-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-7fe3aaa151.eot);
+            src: url(font/iconfont-7fe3aaa151.eot#iefix) format("embedded-opentype"), url(font/iconfont-d91c6d8c6e.woff) format("woff"), url(font/iconfont-43e1f7b40d.ttf) format("truetype")
+        }
+        @font-face{
+             /* 定义网络字体的字体系列名称 */
+            font-family: home-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-e7aa55706f.eot);
+            src: url(font/iconfont-e7aa55706f.eot#iefix) format("embedded-opentype"), url(font/iconfont-a4acbf4ccb.woff) format("woff"), url(font/iconfont-e10a2a74bc.ttf) format("truetype")
+        }
+        /*整个头部容器大小*/
+        .head-container{
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid #efefef;
+        }
+        /* 内部居中 */
+        .head-inner-container{
+            width: 1240px;
+            height: 80px;
+            margin: 0 auto;
+        
+        }
+        /* 最左侧logo居中 */
+        .head-left-logo{
+            float: left;
+        }
+        /* logo的超链接实现*/
+        .head-left-logo-link{
+            display: block;
+            height: 80px;
+            width: 115px;
+            color: #00c3f5;
+        }
+        /* logo实现及设置 */
+        .head-left-logo-link-logo{
+            font-family: layout-font !important;
+            font-size: 115px;
+            position: absolute;
+            top: -16px;
+        }
+        /* logo内容写入 */
+        .head-left-logo-link-logo::before{
+            content: "\E608";
+        }
+        /* 导航整块右浮动 */
+        .head-mid-nav-ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            float: right;
+            
+        }
+        /* 里面每一项左浮动 */
+        .head-mid-nav-li{
+            float: left;
+            margin: 0 15px;
+        }
+        /* a元素设置为块级元素来设置高和行高*/
+        .head-mid-nav-link{
+            text-decoration: none;
+            color: black;
+            display: block;
+            height: 80px;
+            line-height: 80px;
+        }
+        .head-mid-nav-link:hover{
+            color: #00c3f5;
+        }
+
+        /* 最右服务区 */
+        .head-right{
+            float:right;
+            height: 80px;
+        }
+        /* 全部内容左浮动 */
+        .head-right-search, .head-right-user, .head-right-cart{
+            float: left;
+        }
+        /* 最右服务区的search区域 */
+        /* 因为把文本域的框去掉了，所以这里加一个边框 */
+        .search-border{
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            width: 180px;
+            height: 30px;
+            line-height: 28px;
+            vertical-align: middle;
+            /* 这里调整整个搜索框的位置*/
+            margin: 25px 17px 30px;
+            text-align: center;
+            padding: 0;
+        }
+        /* 这是文本域设置，注意去除边框以及聚焦时框隐藏*/
+        .search-box{
+            border: none;
+            outline: 0;
+            vertical-align: middle;
+            width: 135px;
+            height: 20px;
+            margin-left: 15px;
+            font-size: 12px;
+            line-height: 20px;
+        }
+        /* 超链接效果 */
+        .search-link{
+            color: black;
+            text-decoration: none;
+        }
+        /* 放大镜大小设置 */
+        .search-text{
+            font-family: layout-font !important;
+            font-size: 18px;
+            color:  black;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        /* 放大镜利用伪类写入 */
+        .search-text::before{
+            content: "\E634";
+        }
+        /* 最右用户区*/
+        .head-right-user{
+            padding: 29px 17px 0;
+        }
+        /* 图片大小调整 */
+        .user-img{
+            width: 24px;
+            display: block;
+        }
+        /* 调整超链接大小范围*/
+        .user-link{
+            display: block;
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+        /* 最右购物车区域 */
+        .head-right-cart{
+            padding: 29px 17px 0;
+        }
+        /* 加载购物车字体，设置大小 */
+        .cart-text{
+            font-family: layout-font !important;
+            margin-left: -8px;
+            font-size: 30px;
+        }
+        /* 利用伪元素写入 */
+        .cart-text::before{
+            content: "\E635";
+        }
+        /* 超链接大小设置 */
+        .cart-link{
+            display: block;
+            width: 24px;
+            height: 24px;
+            text-decoration: none;
+            color: black;
+            position: relative;
+        }
+        /* 对购物车上的数字进行移动，以及大小设置 */
+        .cart-num{
+            position: absolute;
+            left: -4px;
+            top: 2px;
+            width: 100%;
+            height: 100%;
+            color: #e02b41;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+        }
+        /* 轮播图样式*/
+        .img{
+            width: 1920px;
+            height: 480px;
+            position: relative;
+            /* 向左移动了父级宽度50%的距离*/
+            left: 50%;
+            /* 
+                因为本身a元素居中，又向右移动了50%的a元素的宽度
+                所以现在图片最左边应该是在屏幕的最中间位置，也就是中轴线上
+                所以我们再向左移动图片的50%，回到屏幕最左边
+            */
+            transform: translateX(-50%);
+
+        }
+        .img-link{
+            display: block;
+            width: 1240px;
+            height: 480px;
+            margin: 0 auto;
+        }
+        .img-viewport{
+            width: 1920px;
+            height: 480px;
+            float: left;
+            overflow: hidden;
+        }
+        .img-store{
+            width: 13440px;
+            height: 480px;
+            overflow: hidden;
+            position: absolute;
+            left: -1920px;
+        }
+        .viewport-container{
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 菜单块 */
+        .menu-ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(248,247,247,0.8);
+            width: 244px;
+            height: 480px;
+            padding: 12px 0 0 0;
+            box-sizing: border-box;
+        }
+        .menu-li-a{
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 0 30px;
+        }
+        .menu-li{
+            height: 55px;
+            line-height: 55px;
+        }
+        .menu-li:hover{
+            background-color: white;
+        }
+        .menu-container{
+            height: 480px;
+            width: 1240px;
+            position: absolute;
+            left: 50%;
+            top: 81px;
+            transform: translateX(-50%);
+        }
+        /* 轮播图下方广告区*/
+        /* 五个大盒子 */
+        .slider-container{
+            width: 100%;
+            height: 140px;
+        }
+        .slider-inner-container{
+            width: 1240px;
+            height: 140px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .slider-box{
+            width: 20%;
+            height: 100%;
+            float: left;
+        }
+        .slider-box-space{
+            padding-left: 6px;
+            padding-top: 5px;
+            box-sizing: border-box;
+        }
+        .slider-box-img{
+            width: 100%;
+        }
+        /* 第一个大盒子里的四个小盒子*/
+        .slider-small-box{
+            float: left;
+            width: 50%;
+            height: 50%;
+        }
+
+        .slider-small-box-link{
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: #ddd;
+            text-align: center;
+            font-size: 12px;
+        }
+        .small-box-icon1,.small-box-icon2,.small-box-icon3,.small-box-icon4{
+            display: block;
+            font-size: 24px;
+            margin-bottom: 2px;
+            font-family: home-font!important;
+            text-align: center;
+            color: #666;
+            line-height: 40px;
+        }
+        .small-box-icon1::before{
+            content: "\E658";
+        }
+        .small-box-icon2::before{
+            content: "\E65A";
+        }
+        .small-box-icon3::before{
+            content: "\E63B";
+        }
+        .small-box-icon4::before{
+            content: "\E65D";
+        }
+        .small-box-text{
+            text-align: center;
+        }
+        .slider-box1{
+            margin-top: 5px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            width: 244px;
+
+        }
+        /* 主体广告区 */
+        p,h1, h2, h3, h4, h5, h6{
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .adv-container{
+            background-color: #F5F5F5;
+            height: 800px;
+            
+        }
+        .inner-container{
+            width: 1240px;
+            margin: 0 auto;
+        }
+        /* 第一行内容 */
+        .h2-content, .a-content{
+            float: left;
+        }
+        .row1-h2-span{
+            display: inline-block;
+            float: right;
+            margin-top:12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .container-row1{
+            width: 100%;
+            overflow: hidden;
+        }
+        .h2-content{
+            margin-top:5px;
+        }
+        .a-content{
+            display: inline-block;
+            margin-top:12px;
+            color: #00C3F5;
+            margin-left: 30px;
+            line-height: 24px;
+            padding-bottom: 3px;
+            font-size: 14px;
+        }
+        .span-a-content{
+            text-decoration: none;
+            color: black;
+        }
+        .span-a-content:hover{
+            color: #00C3F5;
+        }
+        .phone-adv-container{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        /* 第二行 第一区 */
+        .box,.box1{
+            width: 20%;
+            height: 338px;
+        }
+        .img1{
+            width: 100%;
+            height: 100%;
+        }
+        /*第二区*/
+        .box2{
+            padding: 0 5px;
+            box-sizing: border-box;
+        }
+
+        .box2-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box2-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img2{
+            margin: 36px 22px 0;
+        }
+        .img2-h4,.img2-p{
+            font-size: 14px;
+        }
+        .img2-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img2-h6{
+            color: #D4D3D4;
+        }
+        .img2-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img2-p-icon::before{
+            content:"\FFE5";
+        }
+        .new-product{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #00C3F5;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 12px;
+            color: white;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 40px;
+        }
+        /* 第三区*/
+        .box3{
+            padding: 0 5px 0 0;
+            box-sizing: border-box;
+        }
+        .box3-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box3-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img3{
+            margin: 36px 22px 0;
+        }
+        .img3-h4,.img3-p{
+            font-size: 14px;
+        }
+        .img3-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img3-h6{
+            color: #D4D3D4;
+        }
+        .img3-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img3-p-icon::before{
+            content:"\FFE5";
+        }
+        .img3-p-icon-qi{
+            font-size: 12px;
+        }
+        /* 第四区*/
+        .box4{
+            padding: 0 5px 0 0;
+            box-sizing: border-box;
+        }
+        .box4-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box4-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img4{
+            margin: 36px 22px 0;
+        }
+        .img4-h4,.img4-p{
+            font-size: 14px;
+        }
+        .img4-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img4-h6{
+            color: #D4D3D4;
+        }
+        .img4-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img4-p-icon::before{
+            content:"\FFE5";
+        }
+        .img4-p-icon-qi{
+            font-size: 12px;
+        }
+        .img4-p-icon-del{
+            font-size: 12px;
+            color: #B2B2B2;
+        }
+        .img4-p-icon-del-icon::before{
+            content: "\FFE5";
+        }
+        /* 第五区 */
+        .box5{
+            box-sizing: border-box;
+        }
+        .box5-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box5-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img5{
+            margin: 36px 22px 0;
+        }
+        .img5-h4,.img5-p{
+            font-size: 14px;
+        }
+        .img5-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img5-h6{
+            color: #D4D3D4;
+        }
+        .img5-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img5-p-icon::before{
+            content:"\FFE5";
+        }
+        .img5-p-icon-qi{
+            font-size: 12px;
+        }
+        .img5-p-icon-del{
+            font-size: 12px;
+            color: #B2B2B2;
+        }
+        .img5-p-icon-del-icon::before{
+            content: "\FFE5";
+        }
+        
+        /*第六区*/
+        .box6{
+        
+            box-sizing: border-box;
+        }
+        .box6-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box6-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img6{
+            margin: 36px 22px 0;
+        }
+        .img6-h4,.img6-p{
+            font-size: 14px;
+        }
+        .img6-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img6-h6{
+            color: #D4D3D4;
+        }
+        .img6-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img6-p-icon::before{
+            content:"\FFE5";
+        }
+        .img6-p-icon-qi{
+            font-size: 12px;
+        }
+        .img6-p-icon-del{
+            font-size: 12px;
+            color: #B2B2B2;
+        }
+        .img6-p-icon-del-icon::before{
+            content: "\FFE5";
+
+        }
+        .box6{
+            padding-top: 5px;
+            box-sizing: border-box;
+        }
+        /* 第七区 */
+        .box7{
+            padding: 5px 5px 0 5px;
+            box-sizing: border-box;
+        }
+        .box7-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box7-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img7{
+            margin: 36px 22px 0;
+        }
+        .img7-h4,.img7-p{
+            font-size: 14px;
+        }
+        .img7-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img7-h6{
+            color: #D4D3D4;
+        }
+        .img7-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img7-p-icon::before{
+            content:"\FFE5";
+        }
+        /* 第八区 */
+        .box8{
+            padding: 5px 5px 0 0;
+            box-sizing: border-box;
+        }
+        .box8-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box8-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img8{
+            margin: 36px 22px 0;
+        }
+        .img8-h4,.img8-p{
+            font-size: 14px;
+        }
+        .img8-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img8-h6{
+            color: #D4D3D4;
+        }
+        .img8-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img8-p-icon::before{
+            content:"\FFE5";
+        }
+        .img8-p-icon-qi{
+            font-size: 12px;
+        }
+        .img8-p-icon-del{
+            font-size: 12px;
+            color: #B2B2B2;
+        }
+        .img8-p-icon-del-icon::before{
+            content: "\FFE5";
+        }
+        /*第九区*/
+        .box9{
+            padding: 5px 5px 0 0;
+            box-sizing: border-box;
+        }
+        .box9-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box9-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img9{
+            margin: 36px 22px 0;
+        }
+        .img9-h4,.img9-p{
+            font-size: 14px;
+        }
+        .img9-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img9-h6{
+            color: #D4D3D4;
+        }
+        .img9-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img9-p-icon::before{
+            content:"\FFE5";
+        }
+        .img9-p-icon-qi{
+            font-size: 12px;
+        }
+        /* 第10区 */
+        .box10{
+            padding: 5px 0 0 0;
+            box-sizing: border-box;
+        }
+        .box10-inner{
+            width: 100%;
+            height: 338px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+        }
+        .box10-inner:hover{
+            box-shadow: 0px 10px 20px #333333;
+        }
+        .img10{
+            margin: 36px 22px 0;
+        }
+        .img10-h4,.img10-p{
+            font-size: 14px;
+        }
+        .img10-h4{
+            margin-top:40px;
+            color: #555757;
+        }
+        .img10-h6{
+            color: #D4D3D4;
+        }
+        .img10-p-icon{
+            padding-right: 2px;
+            margin: 0 4px;
+            font-size: 14px;
+            color: #E02B41;
+        }
+        .img10-p-icon::before{
+            content:"\FFE5";
+        }
+        .box6, .box7, .box8, .box9, .box10{
+            margin-bottom: 5px;
+        }
+
+        .box2:hover,.box3:hover,.box4:hover,.box5:hover,.box6:hover,.box7:hover,.box8:hover,.box9:hover,.box10:hover{
+            cursor: pointer;
+        }
+        /* 页脚样式 */
+        /* 最外层容器 */
+        .footer-container{
+            width: 100%;
+            height: 296px;
+            border-top: 1px solid #ddd;
+        }
+        /* 居中容器 */
+        .footer-inner-container{
+            width: 1240px;
+            height: 296px;
+            margin: 0 auto;
+        }
+        /* 第一行 */
+        .footer-row1{
+            width: 100%;
+            height: 197px;
+            overflow: hidden;
+            border-bottom: 1px solid #ddd;
+        }
+        /* 第一行左服务区*/
+        .row1-left{
+            width: 960px;
+            float: left;
+            margin: 60px 0 16px 26px;
+        }
+        /* 左侧服务区的每一项 */
+        .footer-box{
+            width: 25%;
+            line-height: 30px;
+            float: left;
+            margin-bottom: 27px;
+        }
+        .box-link{
+            text-decoration: none;
+            color: #9d9d9d;
+        }
+        .box1-icon,.box2-icon,.box3-icon,.box4-icon,.box5-icon,.box6-icon,.box7-icon,.box8-icon{
+            font-family: layout-font !important;
+            font-size: 30px;
+            vertical-align: middle;
+        }
+        .box1-icon::before{
+            content: "\E631";
+        }
+        .box2-icon::before{
+            content: "\E62C";
+        }
+        .box3-icon::before{
+            content: "\E62D";
+        }
+        .box4-icon::before{
+            content: "\E62E";
+        }
+        .box5-icon::before{
+            content: "\E62F";
+        }
+        .box6-icon::before{
+            content: "\E632";
+        }
+        .box7-icon::before{
+            content: "\E630";
+        }
+        .box8-icon::before{
+            content: "\E633";
+        }
+        .box-text{
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        /* 第一行右客服区 */
+        .row1-right{
+            float: right;
+            margin-top: 75px;
+        }
+        /* 右下角的蓝色box*/
+        .online-chat{
+            width: 144px;
+            height: 40px;
+            background-color: #48B9E1;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+        p{
+            margin: 0px;
+        }
+        .row1-right-n{
+            font-size: 12px;
+            margin-bottom: 2px;
+            color: #ddd;
+        }
+        .row1-right-pn{
+            font-size: 20px;
+            color: #00c3f5;
+            margin-bottom: 8px;
+        }
+        .online-chat-link{
+            display: block;
+            width: 144px;
+            height: 40px;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+        .online-chat-text{
+            display: inline-block;
+            color: white;
+            font-size: 16px;
+            line-height: 36px;
+            text-align: center;
+            vertical-align: middle;
+            transform: translateX(-5px);
+        }
+        .online-chat-icon{
+            font-family: layout-font !important;
+            vertical-align: middle;
+            font-size: 28px;
+            color: white;
+        }
+        .online-chat-icon::before{
+            content: "\E629";
+        }
+        /* 第二行 */
+        .footer-ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding: 0 0 0 13px;
+            margin: 26px 0 18px 0;
+        }
+        .footer-li{
+            float: left;
+            padding: 0 15px;
+            font-size: 12px;
+        }
+        .footer-li-link{
+            text-decoration: none;
+            color: #9d9d9d;
+        }
+        .footer-li-border{
+            border-right: 1px solid #ddd;
+        }
+        /* 防止塌陷/溢出, 可能没有用*/
+        .footer-row2{
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+        /* 第三行 */
+        .footer-row3{
+            overflow: hidden;  /* 可能这一行没有用 */
+        }
+        /* 第三行左区 */
+        .footer-row3-left{
+            float: left;
+        }
+        .row3-span{
+            margin-right: 10px;
+            font-size: 12px;
+            color: #9d9d9d;
+        }
+        .row3-link{
+            text-decoration: none;
+            color: #9d9d9d;
+        }
+        /* 第三行右区 */
+        /* 先防止溢出/塌陷 可能没有用*/
+        .footer-row3-right{
+            float: right; 
+        }
+        .row3-right-ul{
+            list-style: none;
+        }
+        .row3-right-li{
+            float: left;
+        }
+        .row3-right-link{
+            padding: 0 5px;
+            text-decoration: none;
+            line-height: 10px;
+        }
+        .icon-weibo, .icon-wechat, .icon-qzone{
+            font-family: layout-font!important;
+            color: #999;
+            font-size: 26px;
+            vertical-align: middle;
+            transition: color .5s;
+        }
+        .icon-weibo::before{
+            content: "\E61C";
+        }
+        .icon-wechat::before{
+            content: "\E694";
+        }
+        .icon-qzone::before{
+            content: "\E600";
+        }
+        .row3-right-border{
+            border-right: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-container">
+        <!-- 头部整个容器 -->
+        <div class="head-container">
+            <!-- 头部内部容器，居中用 -->
+            <div class="head-inner-container">
+                <!-- 头部左边logo区 -->
+                <div class="head-left-logo">
+                    <!-- 实现超链接跳转效果并且设置整个区域大小 -->
+                    <a href="#" class="head-left-logo-link">
+                        <!-- 设置字体logo大小，利用伪类写入内容 -->
+                        <span class="head-left-logo-link-logo"></span>
+                    </a>
+                </div>
+
+                <!--    
+                    头部右边区域, 因为导航区和此区都是右浮动
+                    所以这一块的html代码要放在导航区的上方
+                    否则页面中显示就是此区在导航区的左边   
+                -->
+                <div class="head-right">
+                    <!-- 头部右区中的搜索框 -->
+                    <div class="head-right-search">
+                        <!-- 外部增加边框 -->
+                        <div class="search-border">
+                            <!-- 输入框，去除边框 -->
+                            <input type="text" name="search-text" class="search-box" placeholder="魅族手机">
+                            <!-- 实现一个跳转效果 -->
+                            <a href="#" class="search-link">
+                                <!-- 伪类写入内容 -->
+                                <span class="search-text"></span>
+                            </a>
+                            
+                        </div>
+                    </div>
+
+                    <!-- 头部右区中的用户区 -->
+                    <div class="head-right-user">
+                        <!-- 超链接效果 -->
+                        <a href="#" class="user-link">
+                            <!-- 利用图片写入 -->
+                            <img src="img/user.png" class="user-img">
+                        </a>
+                    </div>
+
+                    <!-- 头部右区中的购物车 -->
+                    <div class="head-right-cart">
+                        <!-- 购物车的超链接效果 -->
+                        <a href="#" class="cart-link">
+                            <!-- 购物车上数字 -->
+                            <span class="cart-num">0</span>
+                            <!-- 利用伪元素写入内容 -->
+                            <span class="cart-text"></span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- 头部中间导航区域 -->
+                
+                <ul class="head-mid-nav-ul">
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">魅族商城</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">魅族手机</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">魅蓝手机</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">魅族声学</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">智能·配件</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">服务</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">专卖店</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">Flyme</a>
+                    </li>
+                    <li class="head-mid-nav-li">
+                        <a href="#" class="head-mid-nav-link">社区</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 轮播图区 -->
+        <div class="viewport-container">
+            <!-- 图片储藏器 -->
+            <div class="img-store">
+                <!-- 每张图片的视窗 -->
+                <div class="img-viewport">
+                    <!-- 每张图片都有超链接，并且设置大小和居中 -->
+                    <a href="#" class="img-link">
+                        <!-- 真正的图片内容 -->
+                        <img src="img/1.jpg" class="img">
+                    </a>
+                </div>
+                
+                <!-- 第二张图  -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/2.jpg" class="img">
+                    </a>
+                </div>
+                <!-- 第三张图 -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/3.png" class="img">
+                    </a>
+                </div>
+                <!-- 第四张图 -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/4.jpg" class="img">
+                    </a>
+                </div>
+                <!-- 第五张图 -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/5.jpg" class="img">
+                    </a>
+                </div>
+                <!-- 第六张图 -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/6.png" class="img">
+                    </a>
+                </div>
+                <!-- 第七张图 -->
+                <div class="img-viewport">
+                    <a href="#" class="img-link">
+                        <img src="img/7.jpg" class="img">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 这是覆盖菜单 -->
+        <div class="menu-container">
+            <ul class="menu-ul">
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        手机
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        智能设备
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        智能穿戴
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        游戏设备
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        数码影音
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        手机配件/移动电源
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        移动存储/办公设备
+                    </a>
+                </li>
+                <li class="menu-li">
+                    <a href="#" class="menu-li-a">
+                        生活周边
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 这是轮播图下面广告区 -->
+        <div class="slider-container">
+        <div class="slider-inner-container">
+            <div class="slider-box slider-box1">
+                <div class="slider-small-box">
+                    <a href="#" class="slider-small-box-link">
+                        <span class="small-box-icon1"></span>
+                        <span class="small-box-text">M码通道</span>
+                    </a>
+                </div>
+                <div class="slider-small-box">
+                    <a href="#" class="slider-small-box-link">
+                        <span class="small-box-icon2"></span>
+                        <span class="small-box-text">以旧换新</span>
+                    </a>
+                </div>
+                <div class="slider-small-box">
+                    <a href="#" class="slider-small-box-link">
+                        <span class="small-box-icon3"></span>
+                        <span class="small-box-text">赚奖金</span>
+                    </a>
+                </div>
+                <div class="slider-small-box">
+                    <a href="#" class="slider-small-box-link">
+                        <span class="small-box-icon4"></span>
+                        <span class="small-box-text">回购单查询</span>
+                    </a>
+                </div>
+            </div>
+            <div class="slider-box slider-box-space">
+                <a href="#" class="slider-box-link">
+                    <img src="img/8.jpg" class="slider-box-img">
+                </a>
+            </div>
+            <div class="slider-box slider-box-space">
+                <a href="#" class="slider-box-link">
+                    <img src="img/9.jpg" class="slider-box-img">
+                </a>
+            </div>
+            <div class="slider-box slider-box-space">
+                <a href="#" class="slider-box-link">
+                    <img src="img/10.jpg" class="slider-box-img">
+                </a>
+            </div>
+            <div class="slider-box slider-box-space">
+                <a href="#" class="slider-box-link">
+                    <img src="img/11.jpg" class="slider-box-img">
+                </a>
+            </div>
+        </div>
+    </div>
+        <!-- 这是主体广告区 -->
+        <div class="adv-container">
+        <div class="inner-container">
+            <div class="container-row1">    
+                <h2 class="h2-content">手机</h2>
+                <a href="#" class="a-content">热销机型</a>  
+                    <span class="row1-h2-span"><a href="#" class="span-a-content">更多></a></span>
+            </div>
+            <div class="phone-adv-container">
+                <div class="box box1">
+                    <img src="img/Cgbj0FnHsoKAT8InAACk3cNVKV0729.jpg" class="img1">
+                </div>
+                <div class="box box2">
+                    <div class="box2-inner">
+                        <img src="img/hanghaiwang.png" class="img2">
+                        <h4 class="img2-h4">魅蓝 Note6 航海王限定套装</h4>
+                        <h6 class="img2-h6">购机享6期免息</h6>
+                        <p class="img2-p">
+                            <span class="img2-p-icon">1699</span>
+                        </p>
+                        <div class="new-product">
+                            新品
+                        </div>
+                    </div>
+                </div>
+                <div class="box box3">
+                    <div class="box3-inner">
+                        <img src="img/meilan6.jpg" class="img3">
+                        <h4 class="img3-h4">魅蓝 6</h4>
+                        <h6 class="img3-h6">八核+AI智能加速</h6>
+                        <p class="img3-p">
+                            <span class="img3-p-icon">699 <span class="img3-p-icon-qi">起</span></span>
+                        </p>
+                        <div class="new-product">
+                            新品
+                        </div>
+                    </div>
+                </div>
+                <div class="box box4">
+                    <div class="box4-inner">
+                        <img src="img/pro7plus.png" class="img4">
+                        <h4 class="img4-h4">魅族 PRO 7 PLUS</h4>
+                        <h6 class="img4-h6">直降281元 享12期免息</h6>
+                        <p class="img4-p">
+                            <span class="img4-p-icon">3299 <span class="img4-p-icon-qi">起</span></span>
+                            <span class="img4-p-icon-del">
+                                <del class="img4-p-icon-del-icon">3580</del></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="box box5">
+                    <div class="box5-inner">
+                        <img src="img/meilanX.jpg" class="img5">
+                        <h4 class="img5-h4">魅蓝 X</h4>
+                        <h6 class="img5-h6">直降300元 顺丰包邮</h6>
+                        <p class="img5-p">
+                            <span class="img5-p-icon">1199 <span class="img5-p-icon-qi">起</span></span>
+                            <span class="img5-p-icon-del">
+                                <del class="img5-p-icon-del-icon">1499</del></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="box box6">
+                    <div class="box6-inner">
+                        <img src="img/note5.jpg" class="img6">
+                        <h4 class="img6-h4">魅蓝 Note5</h4>
+                        <h6 class="img6-h6">限时特惠50元</h6>
+                        <p class="img6-p">
+                            <span class="img6-p-icon">849 <span class="img6-p-icon-qi">起</span></span>
+                            <span class="img6-p-icon-del">
+                                <del class="img6-p-icon-del-icon">899</del></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="box box7">
+                    <div class="box7-inner">
+                        <img src="img/meilanE.png" class="img7">
+                        <h4 class="img7-h4">魅蓝 E</h4>
+                        <h6 class="img7-h6">视觉盛宴 尽在高清大屏</h6>
+                        <p class="img7-p">
+                            <span class="img7-p-icon">999 </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="box box8">
+                    <div class="box8-inner">
+                        <img src="img/meilanE2.jpg" class="img8">
+                        <h4 class="img8-h4">魅蓝 E2</h4>
+                        <h6 class="img8-h6">限时特惠100元</h6>
+                        <p class="img8-p">
+                            <span class="img8-p-icon">1199 <span class="img8-p-icon-qi">起</span></span>
+                            <span class="img8-p-icon-del">
+                                <del class="img8-p-icon-del-icon">1299</del></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="box box9">
+                    <div class="box9-inner">
+                        <img src="img/meilan5s.png" class="img9">
+                        <h4 class="img9-h4">魅蓝 5s</h4>
+                        <h6 class="img9-h6">32G版领卷减50元</h6>
+                        <p class="img9-p">
+                            <span class="img9-p-icon">799 <span class="img9-p-icon-qi">起</span></span>  
+                        </p>
+                    </div>
+                </div>
+                <div class="box box10">
+                    <div class="box10-inner">
+                        <img src="img/meilanpro6s.png" class="img10">
+                        <h4 class="img10-h4">魅蓝 PRO 6s</h4>
+                        <h6 class="img10-h6">购机享3期免息</h6>
+                        <p class="img10-p">
+                            <span class="img10-p-icon">2299</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 这是页脚区 -->
+        <!-- 页脚部分 -->
+    <div class="footer-container">
+        <!-- 页脚居中 -->
+        <div class="footer-inner-container">
+            <!-- 第一行 -->
+            <div class="footer-row1">
+                <!-- 第一行左侧服务区 -->
+                <div class="row1-left">
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box1-icon"></span>
+                            <span class="box-text">顺丰包邮</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box2-icon"></span>
+                            <span class="box-text">100+ 城市次日达</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box3-icon"></span>
+                            <span class="box-text">7 天无理由退货</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box4-icon"></span>
+                            <span class="box-text">15 天换货保障</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box5-icon"></span>
+                            <span class="box-text">1 年免费保修</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box6-icon"></span>
+                            <span class="box-text">2300+ 地下体验店</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box7-icon"></span>
+                            <span class="box-text">远程支持服务</span>
+                        </a>
+                    </div>
+                    <div class="footer-box">
+                        <a href="#" class="box-link">
+                            <span class="box8-icon"></span>
+                            <span class="box-text">上门快修</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- 第一行右侧客服区 -->
+                <div class="row1-right">
+                    <p class="row1-right-n">24小时全国服务热线</p>
+                    <p class="row1-right-pn">400-788-3333</p>
+                    <div class="online-chat">
+                        <a href="#" class="online-chat-link">
+                        <span class="online-chat-icon"></span>
+                        <span class="online-chat-text">在线客服</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二行 -->
+                <div class="footer-row2">
+                    <ul class="footer-ul">
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">了解魅族</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">加入我们</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">联系我们</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">Flyme</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">魅族社区</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">天猫旗舰店</a>
+                        </li>
+                        <li class="footer-li footer-li-border">
+                            <a href="#" class="footer-li-link">问题反馈</a>
+                        </li>
+                        <li class="footer-li">
+                            <a href="#" class="footer-li-link">线上销售授权名单公示</a>
+                        </li>
+                    </ul>   
+                </div>
+
+            <!-- 第三行 -->
+            <div class="footer-row3">
+                <!-- 第三行左区 -->
+                <div class="footer-row3-left">
+                    <span class="row3-span row3-span1">
+                     ©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.
+                    </span>
+                    <span class="row3-span row3-span2">
+                        <a href="#" class="row3-link">
+                        粤ICP备13003602号-2</a>
+                         <a href="#" class="row3-link">合字B2-20170010</a>
+                         <a href="#" class="row3-link">营业执照</a> 
+                         <a href="#" class="row3-link">法律声明</a>
+                        
+                    </span>
+                    <span class="row3-span row3-span3">
+                        粤公网安备 44049102496009 号
+                    </span>
+                </div>
+                <!-- 第三行右区 -->
+                <div class="footer-row3-right">
+                    <ul class="row3-right-ul">
+                        <li class="row3-right-li row3-right-border">
+                            <a href="#" class="row3-right-link">
+                                <span class="icon-weibo"></span>
+                            </a>
+                            
+                        </li>
+                        <li class="row3-right-li row3-right-border">
+                            <a href="#" class="row3-right-link">
+                                <span class="icon-wechat"></span>
+                            </a>
+                            
+                        </li>
+                        <li class="row3-right-li">
+                            <a href="#" class="row3-right-link">
+                                <span class="icon-qzone"></span>
+                            </a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

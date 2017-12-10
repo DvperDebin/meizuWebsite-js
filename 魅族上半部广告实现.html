@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魅族上半部分广告实现</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 页签中的小图标 -->
+    <link href="img/icon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="img/icon.ico" rel="icon" type="image/x-icon">
+    <style type="text/css">
+    	body{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	 @font-face {
+            /* 定义网络字体的字体系列名称 */
+            font-family: layout-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-7fe3aaa151.eot);
+            src: url(font/iconfont-7fe3aaa151.eot#iefix) format("embedded-opentype"), url(font/iconfont-d91c6d8c6e.woff) format("woff"), url(font/iconfont-43e1f7b40d.ttf) format("truetype")
+        }
+    	/* 五个大盒子 */
+    	.slider-container{
+    		width: 100%;
+    		height: 140px;
+    	}
+    	.slider-inner-container{
+    		width: 1240px;
+    		height: 140px;
+    		margin: 0 auto;
+    		overflow: hidden;
+    	}
+    	.slider-box{
+    		width: 20%;
+    		height: 100%;
+    		float: left;
+    	}
+    	.slider-box-space{
+    		padding-left: 5px;
+    		padding-top: 5px;
+    		box-sizing: border-box;
+    	}
+    	.slider-box-img{
+    		width: 100%;
+    	}
+    	/* 第一个大盒子里的四个小盒子*/
+    	.slider-small-box{
+    		float: left;
+    		width: 50%;
+    		height: 50%;
+    	}
+
+    	.slider-small-box-link{
+    		display: block;
+    		width: 100%;
+    		height: 100%;
+    		text-decoration: none;
+    		color: #ddd;
+    		text-align: center;
+    		font-size: 12px;
+    	}
+    	.small-box-icon1,.small-box-icon2,.small-box-icon3,.small-box-icon4{
+	    	display: block;
+	    	font-size: 24px;
+	    	margin-bottom: 2px;
+	   	 	font-family: layout-font !important;
+	   	 	text-align: center;
+    		color: #666;
+    	}
+    	.small-box-icon1::before{
+    		content: "\E61C";
+    	}
+    	.small-box-icon2::before{
+    		content: "\E65A";
+    	}
+    	.small-box-icon3::before{
+    		content: "\E63B";
+    	}
+    	.small-box-icon4::before{
+    		content: "\E65D";
+    	}
+    	.small-box-text{
+    		text-align: center;
+    	}
+    	.slider-box1{
+    		margin-top: 5px;
+    		box-sizing: border-box;
+    		background-color: #f9f9f9;
+
+    	}
+    </style>
+</head>
+<body>
+	<div class="slider-container">
+		<div class="slider-inner-container">
+			<div class="slider-box slider-box1">
+				<div class="slider-small-box">
+					<a href="#" class="slider-small-box-link">
+						<span class="small-box-icon1"></span>
+						<span class="small-box-text">M码通道</span>
+					</a>
+				</div>
+				<div class="slider-small-box">
+					<a href="#" class="slider-small-box-link">
+						<span class="small-box-icon2"></span>
+						<span class="small-box-text">以旧换新</span>
+					</a>
+				</div>
+				<div class="slider-small-box">
+					<a href="#" class="slider-small-box-link">
+						<span class="small-box-icon3"></span>
+						<span class="small-box-text">赚奖金</span>
+					</a>
+				</div>
+				<div class="slider-small-box">
+					<a href="#" class="slider-small-box-link">
+						<span class="small-box-icon4"></span>
+						<span class="small-box-text">回购单查询</span>
+					</a>
+				</div>
+			</div>
+			<div class="slider-box slider-box-space">
+				<a href="#" class="slider-box-link">
+					<img src="img/8.jpg" class="slider-box-img">
+				</a>
+			</div>
+			<div class="slider-box slider-box-space">
+				<a href="#" class="slider-box-link">
+					<img src="img/9.jpg" class="slider-box-img">
+				</a>
+			</div>
+			<div class="slider-box slider-box-space">
+				<a href="#" class="slider-box-link">
+					<img src="img/10.jpg" class="slider-box-img">
+				</a>
+			</div>
+			<div class="slider-box slider-box-space">
+				<a href="#" class="slider-box-link">
+					<img src="img/11.jpg" class="slider-box-img">
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

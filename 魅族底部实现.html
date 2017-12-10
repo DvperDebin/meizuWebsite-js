@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魅族底部实现</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		body {
+            margin: 0;
+            font-family: "PingFang SC", "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", Arial, Helvetica, sans-serif, "\5B8B\4F53";
+            font-size: 14px;
+            min-width: 1240px;
+            min-height: 100%;
+           /* padding-top: 300px; *//*只是为了显示而设置的*/
+        }
+    
+        /* 引入网络字体 - 使用字体系列时，脱离当前操作系统所限制的字体样式 */
+        @font-face {
+            /* 定义网络字体的字体系列名称 */
+            font-family: layout-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-7fe3aaa151.eot);
+            src: url(font/iconfont-7fe3aaa151.eot#iefix) format("embedded-opentype"), url(font/iconfont-d91c6d8c6e.woff) format("woff"), url(font/iconfont-43e1f7b40d.ttf) format("truetype")
+        }
+        /* 最外层容器 */
+		.footer-container{
+			width: 100%;
+			height: 296px;
+			border-top: 1px solid #ddd;
+		}
+		/* 居中容器 */
+		.footer-inner-container{
+			width: 1240px;
+			height: 296px;
+			margin: 0 auto;
+		}
+		/* 第一行 */
+		.footer-row1{
+			width: 100%;
+			height: 197px;
+			overflow: hidden;
+			border-bottom: 1px solid #ddd;
+		}
+		/* 第一行左服务区*/
+		.row1-left{
+			width: 960px;
+			float: left;
+			margin: 60px 0 16px 26px;
+		}
+		/* 左侧服务区的每一项 */
+		.footer-box{
+			width: 25%;
+			line-height: 30px;
+			float: left;
+			margin-bottom: 27px;
+		}
+		.box-link{
+			text-decoration: none;
+			color: #9d9d9d;
+		}
+		.box1-icon,.box2-icon,.box3-icon,.box4-icon,.box5-icon,.box6-icon,.box7-icon,.box8-icon{
+			font-family: layout-font !important;
+			font-size: 30px;
+			vertical-align: middle;
+		}
+		.box1-icon::before{
+			content: "\E631";
+		}
+		.box2-icon::before{
+			content: "\E62C";
+		}
+		.box3-icon::before{
+			content: "\E62D";
+		}
+		.box4-icon::before{
+			content: "\E62E";
+		}
+		.box5-icon::before{
+			content: "\E62F";
+		}
+		.box6-icon::before{
+			content: "\E632";
+		}
+		.box7-icon::before{
+			content: "\E630";
+		}
+		.box8-icon::before{
+			content: "\E633";
+		}
+		.box-text{
+			vertical-align: middle;
+			font-size: 14px;
+		}
+		/* 第一行右客服区 */
+		.row1-right{
+			float: right;
+			margin-top: 75px;
+		}
+		/* 右下角的蓝色box*/
+		.online-chat{
+			width: 144px;
+			height: 40px;
+			background-color: #48B9E1;
+			display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+		}
+		p{
+			margin: 0px;
+		}
+		.row1-right-n{
+			font-size: 12px;
+			margin-bottom: 2px;
+			color: #ddd;
+		}
+		.row1-right-pn{
+			font-size: 20px;
+			color: #00c3f5;
+			margin-bottom: 8px;
+		}
+		.online-chat-link{
+			display: block;
+			width: 144px;
+			height: 40px;
+			text-decoration: none;
+			margin-bottom: 8px;
+		}
+		.online-chat-text{
+			display: inline-block;
+			color: white;
+			font-size: 16px;
+			line-height: 36px;
+			text-align: center;
+			vertical-align: middle;
+			transform: translateX(-5px);
+		}
+		.online-chat-icon{
+			font-family: layout-font !important;
+			vertical-align: middle;
+            font-size: 28px;
+            color: white;
+		}
+		.online-chat-icon::before{
+			content: "\E629";
+		}
+		/* 第二行 */
+		.footer-ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			padding: 0 0 0 13px;
+			margin: 26px 0 18px 0;
+		}
+		.footer-li{
+			float: left;
+			padding: 0 15px;
+			font-size: 12px;
+		}
+		.footer-li-link{
+			text-decoration: none;
+			color: #9d9d9d;
+		}
+		.footer-li-border{
+			border-right: 1px solid #ddd;
+		}
+		/* 防止塌陷/溢出, 可能没有用*/
+		.footer-row2{
+			overflow: hidden;
+			margin-bottom: 18px;
+		}
+		/* 第三行 */
+		.footer-row3{
+			overflow: hidden;  /* 可能这一行没有用 */
+		}
+		/* 第三行左区 */
+		.footer-row3-left{
+			float: left;
+		}
+		.row3-span{
+			margin-right: 10px;
+			font-size: 12px;
+			color: #9d9d9d;
+		}
+		.row3-link{
+			text-decoration: none;
+			color: #9d9d9d;
+		}
+		/* 第三行右区 */
+		/* 先防止溢出/塌陷 可能没有用*/
+		.footer-row3-right{
+			float: right; 
+		}
+		.row3-right-ul{
+			list-style: none;
+		}
+		.row3-right-li{
+			float: left;
+		}
+		.row3-right-link{
+			padding: 0 5px;
+			text-decoration: none;
+			line-height: 10px;
+		}
+		.icon-weibo, .icon-wechat, .icon-qzone{
+			font-family: layout-font!important;
+            color: #999;
+            font-size: 26px;
+            vertical-align: middle;
+            transition: color .5s;
+        }
+        .icon-weibo::before{
+        	content: "\E61C";
+        }
+        .icon-wechat::before{
+        	content: "\E694";
+        }
+        .icon-qzone::before{
+        	content: "\E600";
+        }
+        .row3-right-border{
+        	border-right: 1px solid #ddd;
+        }
+	</style>
+</head>
+<body>
+	<!-- 页脚部分 -->
+	<div class="footer-container">
+		<!-- 页脚居中 -->
+		<div class="footer-inner-container">
+			<!-- 第一行 -->
+			<div class="footer-row1">
+				<!-- 第一行左侧服务区 -->
+				<div class="row1-left">
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box1-icon"></span>
+							<span class="box-text">顺丰包邮</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box2-icon"></span>
+							<span class="box-text">100+ 城市次日达</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box3-icon"></span>
+							<span class="box-text">7 天无理由退货</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box4-icon"></span>
+							<span class="box-text">15 天换货保障</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box5-icon"></span>
+							<span class="box-text">1 年免费保修</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box6-icon"></span>
+							<span class="box-text">2300+ 地下体验店</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box7-icon"></span>
+							<span class="box-text">远程支持服务</span>
+						</a>
+					</div>
+					<div class="footer-box">
+						<a href="#" class="box-link">
+							<span class="box8-icon"></span>
+							<span class="box-text">上门快修</span>
+						</a>
+					</div>
+				</div>
+				<!-- 第一行右侧客服区 -->
+				<div class="row1-right">
+					<p class="row1-right-n">24小时全国服务热线</p>
+					<p class="row1-right-pn">400-788-3333</p>
+					<div class="online-chat">
+						<a href="#" class="online-chat-link">
+						<span class="online-chat-icon"></span>
+						<span class="online-chat-text">在线客服</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- 第二行 -->
+				<div class="footer-row2">
+					<ul class="footer-ul">
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">了解魅族</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">加入我们</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">联系我们</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">Flyme</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">魅族社区</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">天猫旗舰店</a>
+						</li>
+						<li class="footer-li footer-li-border">
+							<a href="#" class="footer-li-link">问题反馈</a>
+						</li>
+						<li class="footer-li">
+							<a href="#" class="footer-li-link">线上销售授权名单公示</a>
+						</li>
+					</ul>	
+				</div>
+
+			<!-- 第三行 -->
+			<div class="footer-row3">
+				<!-- 第三行左区 -->
+				<div class="footer-row3-left">
+					<span class="row3-span row3-span1">
+					 ©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.
+					</span>
+					<span class="row3-span row3-span2">
+						<a href="#" class="row3-link">
+						粤ICP备13003602号-2</a>
+						 <a href="#" class="row3-link">合字B2-20170010</a>
+						 <a href="#" class="row3-link">营业执照</a> 
+						 <a href="#" class="row3-link">法律声明</a>
+						
+					</span>
+					<span class="row3-span row3-span3">
+						粤公网安备 44049102496009 号
+					</span>
+				</div>
+				<!-- 第三行右区 -->
+				<div class="footer-row3-right">
+					<ul class="row3-right-ul">
+						<li class="row3-right-li row3-right-border">
+							<a href="#" class="row3-right-link">
+								<span class="icon-weibo"></span>
+							</a>
+							
+						</li>
+						<li class="row3-right-li row3-right-border">
+							<a href="#" class="row3-right-link">
+								<span class="icon-wechat"></span>
+							</a>
+							
+						</li>
+						<li class="row3-right-li">
+							<a href="#" class="row3-right-link">
+								<span class="icon-qzone"></span>
+							</a>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

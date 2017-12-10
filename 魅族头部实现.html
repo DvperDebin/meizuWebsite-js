@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魅族头部内容</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 页签中的小图标 -->
+	<link href="img/icon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="img/icon.ico" rel="icon" type="image/x-icon">
+	<script src="headUserService.js"></script>
+	<style type="text/css">
+		/* 来自于源网页的样式内容 */
+		body {
+            margin: 0;
+            font-family: "PingFang SC", "\5FAE\8F6F\96C5\9ED1", "Microsoft Yahei", Arial, Helvetica, sans-serif, "\5B8B\4F53";
+            font-size: 14px;
+            min-width: 1240px;
+            min-height: 100%;
+        }
+		ul{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+        @font-face {
+            /* 定义网络字体的字体系列名称 */
+            font-family: layout-font;
+            /* 引入指定的网络字体文件 */
+            src: url(font/iconfont-7fe3aaa151.eot);
+            src: url(font/iconfont-7fe3aaa151.eot#iefix) format("embedded-opentype"), url(font/iconfont-d91c6d8c6e.woff) format("woff"), url(font/iconfont-43e1f7b40d.ttf) format("truetype")
+        }
+        /*整个头部容器大小*/
+        .head-container{
+        	width: 100%;
+        	height: 80px;
+        	border-bottom: 1px solid #efefef;
+        }
+        /* 内部居中 */
+        .head-inner-container{
+        	width: 1240px;
+        	height: 80px;
+        	margin: 0 auto;
+        
+        }
+        /* 最左侧logo居中 */
+        .head-left-logo{
+        	float: left;
+        }
+        /* logo的超链接实现*/
+        .head-left-logo-link{
+        	display: block;
+        	height: 80px;
+            width: 115px;
+            color: #00c3f5;
+        }
+        /* logo实现及设置 */
+        .head-left-logo-link-logo{
+        	font-family: layout-font !important;
+            font-size: 115px;
+            position: absolute;
+            top: -16px;
+        }
+        /* logo内容写入 */
+        .head-left-logo-link-logo::before{
+        	content: "\E608";
+        }
+        /* 导航整块右浮动 */
+        .head-mid-nav-ul{
+        	margin: 0;
+        	padding: 0;
+        	list-style: none;
+        	float: right;
+        	
+        }
+        /* 里面每一项左浮动 */
+        .head-mid-nav-li{
+        	float: left;
+        	margin: 0 15px;
+        }
+        /* a元素设置为块级元素来设置高和行高*/
+        .head-mid-nav-link{
+        	text-decoration: none;
+        	color: black;
+        	display: block;
+        	height: 80px;
+        	line-height: 80px;
+        }
+        .head-mid-nav-link:hover{
+        	color: #00c3f5;
+        }
+
+        /* 最右服务区 */
+        .head-right{
+        	float:right;
+        	height: 80px;
+        }
+        /* 全部内容左浮动 */
+        .head-right-search, .head-right-user, .head-right-cart{
+        	float: left;
+        }
+        /* 最右服务区的search区域 */
+        /* 因为把文本域的框去掉了，所以这里加一个边框 */
+        .search-border{
+        	border: 1px solid #ddd;
+        	border-radius: 25px;
+        	width: 180px;
+        	height: 30px;
+        	line-height: 28px;
+        	vertical-align: middle;
+        	/* 这里调整整个搜索框的位置*/
+        	margin: 25px 17px 30px;
+        	text-align: center;
+        	padding: 0;
+        }
+        /* 这是文本域设置，注意去除边框以及聚焦时框隐藏*/
+        .search-box{
+        	border: none;
+        	outline: 0;
+        	vertical-align: middle;
+        	width: 135px;
+        	height: 20px;
+        	margin-left: 15px;
+        	font-size: 12px;
+        	line-height: 20px;
+        }
+        /* 超链接效果 */
+        .search-link{
+        	color: black;
+        	text-decoration: none;
+        }
+        /* 放大镜大小设置 */
+        .search-text{
+        	font-family: layout-font !important;
+        	font-size: 18px;
+        	color:	black;
+        	vertical-align: middle;
+        	cursor: pointer;
+        }
+        /* 放大镜利用伪类写入 */
+        .search-text::before{
+        	content: "\E634";
+        }
+        /* 最右用户区*/
+        .head-right-user{
+        	padding: 29px 17px 0;
+        }
+        /* 图片大小调整 */
+        .user-img{
+        	width: 24px;
+        	display: block;
+        }
+        /* 调整超链接大小范围*/
+        .user-link{
+        	display: block;
+        	width: 24px;
+        	height: 24px;
+            vertical-align: middle;
+			position: relative;
+        }
+
+        /* 最右购物车区域 */
+        .head-right-cart{
+        	padding: 29px 17px 0;
+        }
+        /* 加载购物车字体，设置大小 */
+        .cart-text{
+        	font-family: layout-font !important;
+        	margin-left: -8px;
+            font-size: 30px;
+        }
+        /* 利用伪元素写入 */
+        .cart-text::before{
+        	content: "\E635";
+        }
+        /* 超链接大小设置 */
+        .cart-link{
+        	display: block;
+        	width: 24px;
+        	height: 24px;
+        	text-decoration: none;
+        	color: black;
+        	position: relative;
+        }
+        /* 对购物车上的数字进行移动，以及大小设置 */
+        .cart-num{
+        	position: absolute;
+        	left: -4px;
+            top: 2px;
+            width: 100%;
+            height: 100%;
+            color: #e02b41;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+        }
+			/*js创建部分*/
+		.user-service-menu{
+			font-size: 12px;
+			padding-top: 4px;
+			text-align: center;
+			transform: translateX(-40%);
+		}
+		#user-menu-ul{
+			background-color: #fff;
+			border-radius: 3px;
+			padding: 6px 0;
+			width: 96px;
+			border: 1px solid #efefef;
+		}
+		.user-menu-li{
+			color: #666;
+			padding: 6px 0;
+		}
+		#menuItem-div{
+			overflow: hidden;
+			position:absolute;
+
+		}
+		/* 搜索框 */
+		.service-search-menu {
+			width: 180px;
+			border-radius: 0 0 20px 20px;
+			background-color: #fff;
+			margin-top: -1px;
+			overflow: hidden;
+			position: absolute;
+			font-size: 12px;
+			border: 1px solid #D5D5D5;
+			border-top:none;
+		}
+		.service-search-menu-list {
+			margin: 15px 0 10px;
+			list-style-type: none;
+			padding: 0;
+		}
+		.service-search-menu-item {
+			height: 30px;
+			padding: 0 15px;
+			overflow: hidden;
+			line-height: 30px;
+			cursor: pointer;
+			color: #999;
+			background-color: transparent;
+			user-select: none;
+			outline: 0;
+		}
+		.service-search-menu-name {
+			display: inline-block;
+			vertical-align: middle;
+			width: 96px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: keep-all;
+			white-space: nowrap;
+		}
+		.service-search-menu-num {
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<!-- 头部整个容器 -->
+	<div class="head-container">
+		<!-- 头部内部容器，居中用 -->
+		<div class="head-inner-container">
+			<!-- 头部左边logo区 -->
+			<div class="head-left-logo">
+				<!-- 实现超链接跳转效果并且设置整个区域大小 -->
+				<a href="#" class="head-left-logo-link">
+					<!-- 设置字体logo大小，利用伪类写入内容 -->
+					<span class="head-left-logo-link-logo"></span>
+				</a>
+			</div>
+
+			<!-- 	
+				头部右边区域, 因为导航区和此区都是右浮动
+				所以这一块的html代码要放在导航区的上方
+				否则页面中显示就是此区在导航区的左边	 
+			-->
+			<div class="head-right">
+				<!-- 头部右区中的搜索框 -->
+				<div class="head-right-search">
+					<!-- 外部增加边框 -->
+					<div class="search-border">
+						<!-- 输入框，去除边框 -->
+						<input type="text" name="search-text" id="search-input" class="search-box" placeholder="魅族手机">
+						<!-- 实现一个跳转效果 -->
+						<a href="#" class="search-link">
+							<!-- 伪类写入内容 -->
+							<span class="search-text"></span>
+						</a>
+						
+					</div>
+				</div>
+
+				<!-- 头部右区中的用户区 -->
+				<div class="head-right-user" id="head-right-user-div">
+					<!-- 超链接效果 -->
+					<a href="#" class="user-link"  id="user-service-link" style="display: block">
+						<!-- 利用图片写入 -->
+						<img src="img/user.png" class="user-img">
+					<!--	<div>     </div>-->
+					</a>
+				</div>
+
+				<!-- 头部右区中的购物车 -->
+				<div class="head-right-cart">
+					<!-- 购物车的超链接效果 -->
+					<a href="#" class="cart-link">
+						<!-- 购物车上数字 -->
+						<span class="cart-num">0</span>
+						<!-- 利用伪元素写入内容 -->
+						<span class="cart-text"></span>
+					</a>
+				</div>
+
+			</div>
+
+			<!-- 头部中间导航区域 -->
+			
+			<ul class="head-mid-nav-ul">
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">魅族商城</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">魅族手机</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">魅蓝手机</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">魅族声学</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">智能·配件</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">服务</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">专卖店</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">Flyme</a>
+				</li>
+				<li class="head-mid-nav-li">
+					<a href="#" class="head-mid-nav-link">社区</a>
+				</li>
+			</ul>
+		</div>
+		<div id="searchMenu" class="service-search-menu" style="height: 235px;top: 48px;left: 1265px;">
+<!--			<ul class="service-search-menu-list">
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝 Note5</span>
+					<span class="service-search-menu-num">约 6 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝 E2</span>
+					<span class="service-search-menu-num">约 6 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝 Note6</span>
+					<span class="service-search-menu-num">约 7 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝手机</span>
+					<span class="service-search-menu-num">约 85 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝5</span>
+					<span class="service-search-menu-num">约 78 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝X</span>
+					<span class="service-search-menu-num">约 56 种</span>
+				</li>
+				<li class="service-search-menu-item">
+					<span class="service-search-menu-name">魅蓝6</span>
+					<span class="service-search-menu-num">约 64 种</span>
+				</li>
+			</ul>
+		</div>-->
+	</div>
+
+</body>
+</html>
